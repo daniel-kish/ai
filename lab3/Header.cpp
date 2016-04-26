@@ -112,7 +112,6 @@ struct State
 					cur.t[r][c] = col[n++];
 			}
 			int est = estim(cur);
-			std::cout << cur << '\n'<< est << '\n' ;
 			if (est < min)
 			{
 				min = est;
@@ -145,10 +144,10 @@ int main()
 
 	s.init();
 
-	std::cout << '\n' << s << '\n';
+	std::cout << '\n' << s << '\n' << '\n' << '\n';
 
 	auto g = s.generation();
-	std::cout << '\n' << g << '\n';
+	std::cout << g << '\n' << '\n' << '\n'<< g.estim(g) << '\n';
 
 //	system("PAUSE");
 }
