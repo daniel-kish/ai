@@ -115,16 +115,16 @@ int main()
 
 	ais::Search<State, decltype(heu), decltype(isTerm)> s(st, heu, isTerm);
 
-	std::thread t{ [&]() {
-		while (!s.done()) {
-			std::this_thread::sleep_for(500ms);
-			auto cur = s.head;
-			std::cout << s.i << ' ' << s.opened.size() << ' ' << s.closed.size() << ' '
-				 << heu(cur) << ' ' << cur.treeLvl << '\n';
-			std::cout << cur.state << '\n';
-		}
-	}
-	};
+	//std::thread t{ [&]() {
+	//	while (!s.done()) {
+	//		std::this_thread::sleep_for(500ms);
+	//		auto cur = s.head;
+	//		std::cout << s.i << ' ' << s.opened.size() << ' ' << s.closed.size() << ' '
+	//			 << heu(cur) << ' ' << cur.treeLvl << '\n';
+	//		std::cout << cur.state << '\n';
+	//	}
+	//}
+	//};
 
 	try {
 		while (!s.done())
@@ -139,7 +139,7 @@ int main()
 			//system("cls");
 			s.core();
 		}
-		std::cout << "A* sol\n" << s.head.state << '\n';
+		
 	}
 	catch (std::exception& e)
 	{
@@ -155,7 +155,8 @@ int main()
 		std::exit(1);
 	}
 
-	t.join();
+	//t.join();
+	std::cout << "A* sol\n" << s.head.state << '\n';
 
 	std::cout << s.status << '\n' << "elapsed " << s.i << '\n';
 	std::cout << std::boolalpha << (sol == s.head.state) << '\n';
